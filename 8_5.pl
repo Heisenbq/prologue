@@ -1,4 +1,4 @@
-% film(Название, Жанр, Страна, До2000, Мультфильм, Оскар)
+% film(Title, Genre, Country, Before2000, Animated, Oscar)
 
 film("The Godfather", 1, 1, 1, 0, 1).
 film("The Dark Knight", 2, 1, 0, 0, 1).
@@ -24,39 +24,38 @@ film("Toy Story", 4, 1, 1, 1, 1).
 % Вопросы пользователю
 
 question1(X1):- 
-    write("Какой жанр у фильма?"), nl,
-    write("1. Драма"), nl,
-    write("2. Боевик"), nl,
-    write("3. Фантастика"), nl,
-    write("4. Комедия"), nl,
+    write("What is the genre of the movie?"), nl,
+    write("1. Drama"), nl,
+    write("2. Action"), nl,
+    write("3. Sci-Fi"), nl,
+    write("4. Comedy"), nl,
     read(X1).
 
 question2(X2):- 
-    write("Фильм снят в какой стране?"), nl,
-    write("1. США"), nl,
-    write("2. Великобритания"), nl,
-    write("3. Франция"), nl,
-    write("4. Япония"), nl,
+    write("Which country was the movie made in?"), nl,
+    write("1. USA"), nl,
+    write("2. UK"), nl,
+    write("3. France"), nl,
+    write("4. Japan"), nl,
     read(X2).
 
 question3(X3):- 
-    write("Фильм до 2000 года?"), nl,
-    write("1. Да"), nl,
-    write("0. Нет"), nl,
+    write("Was the movie released before the year 2000?"), nl,
+    write("1. Yes"), nl,
+    write("0. No"), nl,
     read(X3).
 
 question4(X4):- 
-    write("Это мультфильм?"), nl,
-    write("1. Да"), nl,
-    write("0. Нет"), nl,
+    write("Is it an animated movie?"), nl,
+    write("1. Yes"), nl,
+    write("0. No"), nl,
     read(X4).
 
 question5(X5):- 
-    write("Фильм получал Оскар?"), nl,
-    write("1. Да"), nl,
-    write("0. Нет"), nl,
+    write("Did the movie win an Oscar?"), nl,
+    write("1. Yes"), nl,
+    write("0. No"), nl,
     read(X5).
-
 
 
 guess_film :-
@@ -66,8 +65,7 @@ guess_film :-
     question4(X4), 
     question5(X5),
     film(Title, X1, X2, X3, X4, X5),
-    nl, write("Ваш фильм: "), write(Title), nl, !.
+    nl, write("Your movie might be: "), write(Title), nl, !.
 
-% Если ничего не найдено
 guess_film :- 
-    write("К сожалению, я не смог угадать фильм."), nl.
+    write("Sorry, I couldn't guess the movie."), nl.

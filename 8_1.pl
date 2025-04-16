@@ -47,3 +47,68 @@ man(ivan).
  b_s(X) :- 
      setof(Y, (b_s(Y, X), Y\=X), BS),
      write(BS), nl.
+
+son(X, Y) :-
+    man(X),
+    parent(Y, X).
+
+son(X) :-
+    parent(X, Y),
+    man(Y),
+    write(Y), nl,
+    fail.
+son(_).
+
+husband(X, Y) :-
+    man(X),
+    woman(Y),
+    parent(X, C),
+    parent(Y, C),
+    X \= Y.
+
+
+husband(X) :-
+    man(X),
+    parent(X, C),
+    parent(Y, C),
+    woman(Y),
+    write(Y), nl,
+    fail.
+husband(_)
+
+grand_pa(X, Y) :-
+    man(X),
+    parent(X, Z),
+    parent(Z, Y).
+
+grand_pas(X) :-
+    parent(Z, X),
+    parent(Y, Z),
+    man(Y),
+    write(Y), nl,
+    fail.
+grand_pas(_).
+
+
+grand_pa_and_da(X, Y) :-
+    (grand_pa(X, Y), woman(Y));
+    (grand_pa(Y, X), woman(X)).
+
+
+aunt(X, Y) :-
+    woman(X),
+    parent(P, X),
+    parent(P, Z),
+    parent(Z, Y),
+    X \= Z.
+
+
+aunts(X) :-
+    parent(Z, X),
+    parent(P, Z),
+    parent(P, Y),
+    woman(Y),
+    Y \= Z,
+    write(Y), nl,
+    fail.
+aunts(_).
